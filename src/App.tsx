@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
 
 // Fonts: add these <link> tags in index.html <head> for best performance

@@ -27,9 +27,6 @@ const fadeInUp: Variants = {
   },
 };
 
-// const stagger: Variants = {
-//   visible: { transition: { staggerChildren: 0.12 } },
-// };
 
 const glass = 'backdrop-blur-md bg-white/20 shadow-lg border border-white/30 rounded-2xl';
 
