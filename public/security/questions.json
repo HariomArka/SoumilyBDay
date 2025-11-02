@@ -1,0 +1,48 @@
+{
+  "entryQuestion": {
+    "question": "Can you remember the date?",
+    "answers": ["31st March", "31.03.2025", "31/03/2025","31 March","31 march"]
+  },
+  "sections": [
+    {
+      "id": "3rd",
+      "title": "3rd Semester",
+      "question": {
+        "question": "First official date resturant?",
+        "answers": ["cherry", "Cherry","Cherry Resturant","cherry resturant"]
+      }
+    },
+    {
+      "id": "4th",
+      "title": "4th Semester",
+      "question": {
+        "question": "What is your nickname to my friends?",
+        "answers": ["Mili", "mili"]
+      }
+    },
+    {
+      "id": "astami",
+      "title": "Astami 2025",
+      "question": {
+        "question": "What we ate at Dreamland at the end of 3rd Sem?",
+        "answers": ["Biryani","biryani","BIRYANI"]
+      }
+    },
+    {
+      "id": "summer",
+      "title": "Summer Memories 2025",
+      "question": {
+        "question": "You missed me in Summer?",
+        "answers": ["Yes", "yes", "YES"]
+      }
+    },
+    {
+      "id": "5th",
+      "title": "5th Semester",
+      "question": {
+        "question": "Only movie we saw together completely..... the first letters only?",
+        "answers": ["ZNMD"]
+      }
+    }
+  ]
+}
