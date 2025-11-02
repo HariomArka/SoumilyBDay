@@ -1,6 +1,7 @@
 'use client';
-import React, { useMemo, useState,useEffect } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import ReactDOM from 'react-dom';
 
 type QA = { question: string; answers: string[] };
@@ -13,12 +14,20 @@ type Props = {
   images: ImageMap;
 };
 
-const fadeInUp = {
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      // use cubic-bezier array for typed easing
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
 
-const stagger = {
+const stagger: Variants = {
   visible: { transition: { staggerChildren: 0.12 } },
 };
 
@@ -109,111 +118,6 @@ const Gate = ({
     </motion.div>
   );
 };
-
-// const ImageGrid = ({ images }: { images: string[] }) => (
-//   <motion.div
-//     variants={stagger}
-//     initial="hidden"
-//     whileInView="visible"
-//     viewport={{ once: true, amount: 0.2 }}
-//     className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4"
-//   >
-//     {images.map((src, i) => (
-//       <motion.div
-//         key={i}
-//         variants={fadeInUp}
-//         whileHover={{ scale: 1.03 }}
-//         whileTap={{ scale: 0.98 }}
-//         className="overflow-hidden rounded-lg sm:rounded-xl aspect-square"
-//       >
-//         <motion.img
-//           src={src}
-//           alt={`memory-${i}`}
-//           initial={{ scale: 1.06, opacity: 0 }}
-//           whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.8 } }}
-//           viewport={{ once: true }}
-//           className="w-full h-full object-cover"
-//           loading="eager"
-//           decoding="async"
-//         />
-//       </motion.div>
-//     ))}
-//   </motion.div>
-// );
-
-// const ImageGrid = ({ images }: { images: string[] }) => {
-//   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
-
-//   return (
-//     <>
-//       {/* Grid of images */}
-//       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-//         {images.map((src, i) => (
-//           <div
-//             key={i}
-//             className="overflow-hidden rounded-lg sm:rounded-xl aspect-square cursor-pointer hover:opacity-90 transition"
-//             onClick={() => setFullscreenImage(src)}
-//           >
-//             <img
-//               src={src}
-//               alt={`memory-${i}`}
-//               className="w-full h-full object-cover"
-//               loading="lazy"
-//             />
-//           </div>
-//         ))}
-//       </div>
-
-//       {/* Fullscreen view */}
-//       <AnimatePresence>
-//   {fullscreenImage && (
-//     <>
-//       {/* Background Overlay */}
-//       <motion.div
-//         className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40"
-//         initial={{ opacity: 0 }}
-//         animate={{ opacity: 1 }}
-//         exit={{ opacity: 0 }}
-//         onClick={() => setFullscreenImage(null)}
-//       />
-
-//       {/* Container */}
-//       <motion.div
-//         className="fixed inset-0 z-50 flex items-center justify-center"
-//         initial={{ scale: 0.95, opacity: 0 }}
-//         animate={{ scale: 1, opacity: 1 }}
-//         exit={{ scale: 0.95, opacity: 0 }}
-//         transition={{ duration: 0.2 }}
-//       >
-//         <div className="relative w-full h-full flex items-center justify-center">
-//           {/* Absolutely positioned image (centered via transform) */}
-//           <img
-//             src={fullscreenImage}
-//             alt="fullscreen"
-//             className="absolute top-1/2 left-1/2 
-//                        -translate-x-1/2 -translate-y-1/2
-//                        max-w-[90vw] max-h-[85vh]
-//                        rounded-xl object-contain shadow-2xl"
-//           />
-
-//           {/* Close Button */}
-//           <button
-//             className="absolute top-6 right-6 w-10 h-10 rounded-full 
-//                        bg-pink-600 text-white flex items-center justify-center 
-//                        hover:bg-pink-700 transition z-50"
-//             onClick={() => setFullscreenImage(null)}
-//           >
-//             ✕
-//           </button>
-//         </div>
-//       </motion.div>
-//     </>
-//   )}
-// </AnimatePresence>
-
-//     </>
-//   );
-// };
 
 const FullscreenPortal = ({
   src,
@@ -354,9 +258,8 @@ const SectionCard = ({
           {section.title}
         </h3>
         <span
-          className={`px-3 py-1 rounded-full text-xs sm:text-sm self-start sm:self-auto ${
-            unlocked ? 'bg-green-500 text-white' : 'bg-pink-500/20 text-pink-900'
-          }`}
+          className={`px-3 py-1 rounded-full text-xs sm:text-sm self-start sm:self-auto ${unlocked ? 'bg-green-500 text-white' : 'bg-pink-500/20 text-pink-900'
+            }`}
         >
           {unlocked ? 'Unlocked' : 'Locked'}
         </span>
@@ -419,4 +322,3 @@ export default function Home({ data, images }: Props) {
     </div>
   );
 }
-
