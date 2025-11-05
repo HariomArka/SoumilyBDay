@@ -60,7 +60,7 @@ const MemoryPage: React.FC<MemoryPageProps> = ({ sectionId, title, question, ima
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-pink-50 to-pink-200 p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen bg-linear-to-br from-pink-100 via-pink-50 to-pink-200 p-4 sm:p-6 md:p-8">
       <AnimatePresence mode="wait">
         {!isUnlockedLocal ? (
           // Question/Lock Screen
@@ -84,7 +84,7 @@ const MemoryPage: React.FC<MemoryPageProps> = ({ sectionId, title, question, ima
               </div>
 
               {/* Divider */}
-              <div className="h-px bg-gradient-to-r from-transparent via-pink-300 to-transparent mb-6"></div>
+              <div className="h-px bg-linear-to-r from-transparent via-pink-300 to-transparent mb-6"></div>
 
               {/* Question Section */}
               <motion.div
@@ -114,7 +114,7 @@ const MemoryPage: React.FC<MemoryPageProps> = ({ sectionId, title, question, ima
                   />
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    className="w-full bg-linear-to-r from-pink-500 to-pink-600 text-white py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
                     Unlock 🔓
                   </button>

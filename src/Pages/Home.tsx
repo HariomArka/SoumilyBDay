@@ -40,7 +40,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-pink-50 to-pink-200 overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-pink-100 via-pink-50 to-pink-200 overflow-hidden">
       <AnimatePresence mode="wait">
         {/* Birthday Animation */}
         {showBirthday && (
@@ -183,7 +183,7 @@ const Home = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setShowQuestion(true)}
-                    className="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg"
+                    className="w-full bg-linear-to-r from-pink-500 to-pink-600 text-white py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg"
                   >
                     Find the Secret Key 🔑
                   </motion.button>
@@ -211,7 +211,7 @@ const Home = () => {
                         />
                         <button
                           type="submit"
-                          className="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white py-3 rounded-xl font-semibold hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg text-sm sm:text-base"
+                          className="w-full bg-linear-to-r from-pink-500 to-pink-600 text-white py-3 rounded-xl font-semibold hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg text-sm sm:text-base"
                         >
                           Unlock 🔓
                         </button>
