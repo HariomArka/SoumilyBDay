@@ -1,321 +1,312 @@
-'use client';
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { Variants } from 'framer-motion';
-import ReactDOM from 'react-dom';
+import { useNavigate } from 'react-router-dom';
+import { Gift, Sparkles, Heart } from 'lucide-react';
 
-type QA = { question: string; answers: string[] };
-type Section = { id: string; title: string; question: QA };
-type Questions = { entryQuestion: QA; sections: Section[] };
-type ImageMap = Record<string, string[]>;
-
-type Props = {
-  data: Questions;
-  images: ImageMap;
-};
-
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 22 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      // use cubic-bezier array for typed easing
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
-
-const glass = 'backdrop-blur-md bg-white/20 shadow-lg border border-white/30 rounded-2xl';
-
-const titleFont = { fontFamily: 'Playfair Display, serif' };
-
-function normalize(s: string) {
-  return s.normalize('NFD').toLowerCase().trim();
-}
-
-const Gate = ({
-  qa,
-  onPassed,
-  title = 'Welcome',
-}: {
-  qa: QA;
-  onPassed: () => void;
-  title?: string;
-}) => {
-  const [value, setValue] = useState('');
+const Home = () => {
+  const [showBirthday, setShowBirthday] = useState(true);
+  const [showBucket, setShowBucket] = useState(false);
+  const [showQuestion, setShowQuestion] = useState(false);
+  const [answer, setAnswer] = useState('');
   const [wrong, setWrong] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+  const navigate = useNavigate();
 
-  const normalizedAnswers = useMemo(() => qa.answers.map(normalize), [qa]);
+  // Correct answers for the date question
+  const correctAnswers = ["31st March", "31.03.2025", "31/03/2025","31 March","31 march"];
 
-  const submit = (e: React.FormEvent) => {
+  useEffect(() => {
+    // After 5 seconds, hide birthday text and show bucket
+    const timer = setTimeout(() => {
+      setShowBirthday(false);
+      setShowBucket(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const ok = normalizedAnswers.includes(normalize(value));
-    if (ok) onPassed();
-    else {
+    const normalized = answer.toLowerCase().trim();
+    const isCorrect = correctAnswers.some(ans => normalized.includes(ans));
+
+    if (isCorrect) {
+      setUnlocked(true);
+      setTimeout(() => setShowQuestion(false), 1000);
+    } else {
       setWrong(true);
-      setTimeout(() => setWrong(false), 900);
+      setTimeout(() => setWrong(false), 800);
     }
   };
 
   return (
-    <motion.div
-      className={`w-full max-w-xl mx-auto p-4 sm:p-6 ${glass}`}
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.h2
-        className="text-xl sm:text-2xl md:text-3xl font-semibold text-pink-900 mb-2 sm:mb-3"
-        style={titleFont}
-        variants={fadeInUp}
-        initial="hidden"
-        animate="visible"
-      >
-        {title}
-      </motion.h2>
-      <motion.p
-        className="text-sm sm:text-base text-pink-900/80 mb-3 sm:mb-4"
-        variants={fadeInUp}
-        initial="hidden"
-        animate="visible"
-      >
-        {qa.question}
-      </motion.p>
-      <form onSubmit={submit} className="flex flex-col sm:flex-row gap-2">
-        <input
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder="Your answer"
-          className="flex-1 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-xl outline-none border border-pink-300/60 focus:border-pink-500 bg-white/60"
-        />
-        <motion.button
-          whileTap={{ scale: 0.98 }}
-          whileHover={{ scale: 1.03 }}
-          className="px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-xl bg-pink-600 text-white shadow-md whitespace-nowrap"
-          type="submit"
-        >
-          Unlock
-        </motion.button>
-      </form>
-      <AnimatePresence>
-        {wrong && (
+    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-pink-50 to-pink-200 overflow-hidden">
+      <AnimatePresence mode="wait">
+        {/* Birthday Animation */}
+        {showBirthday && (
           <motion.div
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            className="mt-2 sm:mt-3 text-sm sm:text-base text-red-700"
+            key="birthday"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            className="absolute inset-0 flex items-center justify-center"
           >
-            Not quite. Try again.
+            <div className="text-center px-4">
+              <motion.div
+                initial={{ y: -50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+              >
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-cursive text-pink-600 mb-4">
+                  Happy Birthday
+                </h1>
+              </motion.div>
+
+              <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+              >
+                <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-cursive text-pink-700 font-bold">
+                  Soumily
+                </h2>
+              </motion.div>
+
+              {/* Floating Hearts Animation */}
+              {[...Array(10)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ y: 100, x: Math.random() * 100 - 50, opacity: 0 }}
+                  animate={{
+                    y: -100,
+                    x: Math.random() * 200 - 100,
+                    opacity: [0, 1, 0],
+                  }}
+                  transition={{
+                    delay: i * 0.3,
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                  }}
+                  className="absolute"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                >
+                  <Heart className="text-pink-400" size={20 + Math.random() * 20} fill="currentColor" />
+                </motion.div>
+              ))}
+
+              {/* Sparkles */}
+              {[...Array(15)].map((_, i) => (
+                <motion.div
+                  key={`sparkle-${i}`}
+                  initial={{ scale: 0, rotate: 0 }}
+                  animate={{ scale: [0, 1, 0], rotate: 360 }}
+                  transition={{
+                    delay: i * 0.2,
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                  }}
+                  className="absolute"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                >
+                  <Sparkles className="text-yellow-400" size={15 + Math.random() * 15} />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Bucket Scene */}
+        {showBucket && !unlocked && (
+          <motion.div
+            key="bucket"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            className="absolute inset-0 flex items-center justify-center p-4"
+          >
+            <div className="max-w-2xl w-full">
+              <motion.div
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="backdrop-blur-md bg-white/30 shadow-2xl border border-white/40 rounded-3xl p-6 sm:p-8 md:p-12"
+              >
+                {/* Bucket Icon */}
+                <motion.div
+                  animate={{ rotate: [0, -10, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                  className="flex justify-center mb-6"
+                >
+                  <div className="relative">
+                    <Gift className="text-pink-600 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32" strokeWidth={1.5} />
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="absolute -top-2 -right-2"
+                    >
+                      <Sparkles className="text-yellow-500 w-8 h-8" fill="currentColor" />
+                    </motion.div>
+                  </div>
+                </motion.div>
+
+                <motion.h2
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-2xl sm:text-3xl md:text-4xl font-cursive text-pink-800 text-center mb-4"
+                >
+                  A Bucket Full of Surprises! 🎁
+                </motion.h2>
+
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-base sm:text-lg md:text-xl text-pink-700 text-center mb-8 px-2"
+                >
+                  But first, you need the secret key to unlock it...
+                </motion.p>
+
+                {!showQuestion ? (
+                  <motion.button
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowQuestion(true)}
+                    className="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg"
+                  >
+                    Find the Secret Key 🔑
+                  </motion.button>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <div className="bg-pink-50/50 rounded-2xl p-4 sm:p-6 mb-4">
+                      <p className="text-pink-800 font-medium text-center mb-4 text-sm sm:text-base md:text-lg">
+                        🤔 Can you remember the date?
+                      </p>
+                      <form onSubmit={handleSubmit} className="space-y-4">
+                        <input
+                          type="text"
+                          value={answer}
+                          onChange={(e) => setAnswer(e.target.value)}
+                          placeholder="Enter the special date..."
+                          className={`w-full px-4 py-3 rounded-xl outline-none border-2 transition-all duration-300 text-sm sm:text-base ${
+                            wrong
+                              ? 'border-red-400 bg-red-50 shake'
+                              : 'border-pink-300 focus:border-pink-500 bg-white/70'
+                          }`}
+                        />
+                        <button
+                          type="submit"
+                          className="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white py-3 rounded-xl font-semibold hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg text-sm sm:text-base"
+                        >
+                          Unlock 🔓
+                        </button>
+                      </form>
+                      {wrong && (
+                        <motion.p
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="text-red-500 text-center mt-2 text-sm sm:text-base"
+                        >
+                          Oops! Not quite. Try again! 💭
+                        </motion.p>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Unlocked - Show Navigation Cards */}
+        {unlocked && (
+          <motion.div
+            key="unlocked"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            className="min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-8"
+          >
+            <div className="max-w-6xl w-full">
+              <motion.h1
+                initial={{ y: -50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                className="text-3xl sm:text-4xl md:text-5xl font-cursive text-pink-800 text-center mb-8 sm:mb-12"
+              >
+                Your Memory Journey Awaits! ✨
+              </motion.h1>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {[
+                  { title: '3rd Sem', path: '/3rdsem', emoji: '📚', delay: 0.1 },
+                  { title: '4th Sem', path: '/4thsem', emoji: '📖', delay: 0.2 },
+                  { title: 'Summer 2025', path: '/summer', emoji: '☀️', delay: 0.3 },
+                  { title: 'Astami 2025', path: '/astami', emoji: '🎉', delay: 0.4 },
+                  { title: '5th Sem', path: '/5thsem', emoji: '🎓', delay: 0.5 },
+                ].map((item) => (
+                  <motion.div
+                    key={item.path}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: item.delay }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => navigate(item.path)}
+                    className="backdrop-blur-md bg-white/40 shadow-xl border border-white/50 rounded-2xl p-6 sm:p-8 cursor-pointer group hover:bg-white/50 transition-all duration-300"
+                  >
+                    <div className="text-center">
+                      <div className="text-4xl sm:text-5xl md:text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                        {item.emoji}
+                      </div>
+                      <h3 className="text-xl sm:text-2xl font-semibold text-pink-800 mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-pink-600 text-sm sm:text-base">Click to unlock memories</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="text-center text-pink-700 mt-8 sm:mt-12 font-cursive text-lg sm:text-xl md:text-2xl"
+              >
+                Made with 💕 for the most special girl
+              </motion.p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
-  );
-};
 
-const FullscreenPortal = ({
-  src,
-  onClose,
-}: {
-  src: string;
-  onClose: () => void;
-}) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    document.addEventListener('keydown', handleKey);
-
-    // Disable background scroll
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.removeEventListener('keydown', handleKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [onClose]);
-
-  if (!mounted) return null;
-
-  const portalRoot = typeof window !== 'undefined' ? document.body : null;
-  if (!portalRoot) return null;
-
-  return ReactDOM.createPortal(
-    <AnimatePresence>
-      <motion.div
-        key="overlay"
-        className="fixed inset-0 z-[1200] flex items-center justify-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        {/* Dim background */}
-        <motion.div
-          className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-          onClick={onClose}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        />
-
-        {/* Absolutely centered image */}
-        <div className="relative w-full h-full flex items-center justify-center">
-          <motion.img
-            src={src}
-            alt="fullscreen"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                       max-w-[92vw] max-h-[90vh] rounded-xl object-contain shadow-2xl"
-            initial={{ scale: 0.97, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.97, opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            onClick={(e) => e.stopPropagation()}
-          />
-
-          {/* Close Button */}
-          <button
-            onClick={onClose}
-            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-pink-600 
-                       text-white flex items-center justify-center hover:bg-pink-700 
-                       transition z-[1300]"
-            aria-label="Close"
-          >
-            ✕
-          </button>
-        </div>
-      </motion.div>
-    </AnimatePresence>,
-    portalRoot
-  );
-};
-
-export const ImageGrid = ({ images }: { images: string[] }) => {
-  const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
-
-  return (
-    <>
-      {/* Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-        {images.map((src, i) => (
-          <div
-            key={i}
-            className="overflow-hidden rounded-lg sm:rounded-xl aspect-square cursor-pointer hover:opacity-90 transition"
-            onClick={() => setFullscreenImage(src)}
-          >
-            <img
-              src={src}
-              alt={`memory-${i}`}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Fullscreen Portal */}
-      {fullscreenImage && (
-        <FullscreenPortal
-          src={fullscreenImage}
-          onClose={() => setFullscreenImage(null)}
-        />
-      )}
-    </>
-  );
-};
-
-const SectionCard = ({
-  section,
-  unlocked,
-  onUnlock,
-  images,
-}: {
-  section: Section;
-  unlocked: boolean;
-  onUnlock: () => void;
-  images: string[];
-}) => {
-  return (
-    <motion.section
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.6 }}
-      className={`p-4 sm:p-6 md:p-8 ${glass}`}
-    >
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-3 sm:mb-4">
-        <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-pink-900" style={titleFont}>
-          {section.title}
-        </h3>
-        <span
-          className={`px-3 py-1 rounded-full text-xs sm:text-sm self-start sm:self-auto ${unlocked ? 'bg-green-500 text-white' : 'bg-pink-500/20 text-pink-900'
-            }`}
-        >
-          {unlocked ? 'Unlocked' : 'Locked'}
-        </span>
-      </div>
-
-      {unlocked ? (
-        <ImageGrid images={images} />
-      ) : (
-        <Gate qa={section.question} onPassed={onUnlock} title="Unlock this chapter" />
-      )}
-    </motion.section>
-  );
-};
-
-export default function Home({ data, images }: Props) {
-  const [entryPassed, setEntryPassed] = useState(false);
-  const [unlocked, setUnlocked] = useState<Record<string, boolean>>({});
-
-  return (
-    <div className="max-w-5xl mx-auto px-3 sm:px-4 py-8 sm:py-10 md:py-16">
-      <motion.header
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        className="mb-6 sm:mb-8 md:mb-12 text-center"
-      >
-        <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-pink-900 drop-shadow px-2" style={titleFont}>
-          For a very special girl
-        </h1>
-        <p className="text-sm sm:text-base text-pink-900/80 mt-2 sm:mt-3">A little timeline of us</p>
-      </motion.header>
-
-      {!entryPassed ? (
-        <div className="flex justify-center px-2">
-          <Gate qa={data.entryQuestion} onPassed={() => setEntryPassed(true)} title="Just one question before we begin" />
-        </div>
-      ) : (
-        <motion.div className="space-y-4 sm:space-y-6 md:space-y-8">
-          {data.sections.map((sec) => (
-            <SectionCard
-              key={sec.id}
-              section={sec}
-              unlocked={!!unlocked[sec.id]}
-              images={images[sec.id] ?? []}
-              onUnlock={() => setUnlocked((prev) => ({ ...prev, [sec.id]: true }))}
-            />
-          ))}
-        </motion.div>
-      )}
-
-      <motion.footer
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-center mt-8 sm:mt-12 text-xs sm:text-sm text-pink-900/70"
-      >
-        Made by me for the prettiest Girl..
-      </motion.footer>
+      <style>{`
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-10px); }
+          75% { transform: translateX(10px); }
+        }
+        .shake {
+          animation: shake 0.4s ease-in-out;
+        }
+      `}</style>
     </div>
   );
-}
+};
+
+export default Home;
