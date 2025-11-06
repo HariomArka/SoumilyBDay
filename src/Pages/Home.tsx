@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Gift, Sparkles, Heart } from 'lucide-react';
+import {Sparkles, Heart } from 'lucide-react';
+import '../App.css'
 
 const Home = () => {
   const [showBirthday, setShowBirthday] = useState(true);
@@ -146,7 +147,8 @@ const Home = () => {
                   className="flex justify-center mb-6"
                 >
                   <div className="relative">
-                    <Gift className="text-pink-600 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32" strokeWidth={1.5} />
+                    {/* <Gift className="text-pink-600 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32" strokeWidth={1.5} /> */}
+                    <img src="/she.png" className='w-[300px]' alt="" />
                     <motion.div
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 1.5, repeat: Infinity }}

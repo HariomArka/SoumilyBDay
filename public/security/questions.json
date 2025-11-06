@@ -1,6 +1,6 @@
 {
   "entryQuestion": {
-    "question": "Can you remember the date?",
+    "question": "মনে আছে তারিখটা?👀👀?",
     "answers": ["31st March", "31.03.2025", "31/03/2025","31 March","31 march"]
   },
   "sections": [
@@ -8,7 +8,7 @@
       "id": "3rd",
       "title": "3rd Semester",
       "question": {
-        "question": "First official date resturant?",
+        "question": "First official date resturant কী ছিল 🙃 ?",
         "answers": ["cherry", "Cherry","Cherry Resturant","cherry resturant"]
       }
     },
@@ -16,7 +16,7 @@
       "id": "4th",
       "title": "4th Semester",
       "question": {
-        "question": "What is your nickname to my friends?",
+        "question": "আমার বন্ধুরা তোকে কী বলে ডাকে ?🫢",
         "answers": ["Mili", "mili"]
       }
     },
@@ -24,7 +24,7 @@
       "id": "astami",
       "title": "Astami 2025",
       "question": {
-        "question": "What we ate at Dreamland at the end of 3rd Sem?",
+        "question": "3rd Semএর শেষদিন Dreamlandএ আমরা কী খেয়েছিলাম বল তো?",
         "answers": ["Biryani","biryani","BIRYANI"]
       }
     },
@@ -40,8 +40,8 @@
       "id": "5th",
       "title": "5th Semester",
       "question": {
-        "question": "Only movie we saw together completely..... the first letters only?",
-        "answers": ["ZNMD"]
+        "question": "একটাই তো সিনেমা একসাথে দেখেছি 😏বল দেখি first letter গুলো..😁?",
+        "answers": ["ZNMD","znmd"]
       }
     }
   ]
