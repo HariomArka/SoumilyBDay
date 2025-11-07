@@ -197,7 +197,7 @@ const Home = () => {
                   >
                     <div className="bg-pink-50/50 rounded-2xl p-4 sm:p-6 mb-4">
                       <p className="text-pink-800 font-medium text-center mb-4 text-sm sm:text-base md:text-lg">
-                        🤔 Can you remember the date?
+                        মনে আছে তারিখটা 👀👀?
                       </p>
                       <form onSubmit={handleSubmit} className="space-y-4">
                         <input
@@ -255,11 +255,11 @@ const Home = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {[
-                  { title: '3rd Sem', path: '/3rdsem', emoji: '📚', delay: 0.1 },
-                  { title: '4th Sem', path: '/4thsem', emoji: '📖', delay: 0.2 },
-                  { title: 'Summer 2025', path: '/summer', emoji: '☀️', delay: 0.3 },
-                  { title: 'Astami 2025', path: '/astami', emoji: '🎉', delay: 0.4 },
-                  { title: '5th Sem', path: '/5thsem', emoji: '🎓', delay: 0.5 },
+                  { title: '3rd Sem', path: '/3rdsem', emoji: '', delay: 0.1 },
+                  { title: '4th Sem', path: '/4thsem', emoji: '', delay: 0.2 },
+                  { title: 'Summer 2025', path: '/summer', emoji: '', delay: 0.3 },
+                  { title: 'Astami 2025', path: '/astami', emoji: '', delay: 0.4 },
+                  { title: '5th Sem', path: '/5thsem', emoji: '', delay: 0.5 },
                 ].map((item) => (
                   <motion.div
                     key={item.path}
