@@ -116,7 +116,7 @@ const MemoryPage: React.FC<MemoryPageProps> = ({ sectionId, title, question, ima
                     type="submit"
                     className="w-full bg-linear-to-r from-pink-500 to-pink-600 text-white py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
-                    Unlock 🔓
+                    Unlock
                   </button>
                 </form>
 

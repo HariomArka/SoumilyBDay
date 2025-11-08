@@ -187,7 +187,7 @@ const Home = () => {
                     onClick={() => setShowQuestion(true)}
                     className="w-full bg-linear-to-r from-pink-500 to-pink-600 text-white py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg"
                   >
-                    Find the Secret Key 🔑
+                    Find the Secret Key
                   </motion.button>
                 ) : (
                   <motion.div
@@ -215,7 +215,7 @@ const Home = () => {
                           type="submit"
                           className="w-full bg-linear-to-r from-pink-500 to-pink-600 text-white py-3 rounded-xl font-semibold hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg text-sm sm:text-base"
                         >
-                          Unlock 🔓
+                          Unlock
                         </button>
                       </form>
                       {wrong && (
@@ -250,7 +250,7 @@ const Home = () => {
                 animate={{ y: 0, opacity: 1 }}
                 className="text-3xl sm:text-4xl md:text-5xl font-cursive text-pink-800 text-center mb-8 sm:mb-12"
               >
-                Your Memory Journey Awaits! ✨
+                Journey Down the Memory Lane! ✨
               </motion.h1>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
