@@ -165,7 +165,7 @@ const Home = () => {
                   transition={{ delay: 0.3 }}
                   className="text-2xl sm:text-3xl md:text-4xl font-cursive text-pink-800 text-center mb-4"
                 >
-                  A Bucket Full of Surprises! 🎁
+                  হে সুন্দরী, দেখুন তো কী এসেছে আপনার জন্য .... 🎁
                 </motion.h2>
 
                 <motion.p
@@ -174,7 +174,7 @@ const Home = () => {
                   transition={{ delay: 0.5 }}
                   className="text-base sm:text-lg md:text-xl text-pink-700 text-center mb-8 px-2"
                 >
-                  But first, you need the secret key to unlock it...
+                  Wait wait! দেখি মনে আছে কি না 😁
                 </motion.p>
 
                 {!showQuestion ? (
@@ -187,7 +187,7 @@ const Home = () => {
                     onClick={() => setShowQuestion(true)}
                     className="w-full bg-linear-to-r from-pink-500 to-pink-600 text-white py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg"
                   >
-                    Find the Secret Key
+                    Find the secret key🔑 
                   </motion.button>
                 ) : (
                   <motion.div
@@ -204,7 +204,7 @@ const Home = () => {
                           type="text"
                           value={answer}
                           onChange={(e) => setAnswer(e.target.value)}
-                          placeholder="Enter the special date..."
+                          placeholder="বল বল..."
                           className={`w-full px-4 py-3 rounded-xl outline-none border-2 transition-all duration-300 text-sm sm:text-base ${
                             wrong
                               ? 'border-red-400 bg-red-50 shake'
@@ -224,7 +224,7 @@ const Home = () => {
                           animate={{ opacity: 1 }}
                           className="text-red-500 text-center mt-2 text-sm sm:text-base"
                         >
-                          Oops! Not quite. Try again! 💭
+                          ঠিক করে ভাব🥱🥱
                         </motion.p>
                       )}
                     </div>
@@ -250,7 +250,7 @@ const Home = () => {
                 animate={{ y: 0, opacity: 1 }}
                 className="text-3xl sm:text-4xl md:text-5xl font-cursive text-pink-800 text-center mb-8 sm:mb-12"
               >
-                Journey Down the Memory Lane! ✨
+                চল না একটু ঘুরে আসি স্মৃতির পথে! ✨
               </motion.h1>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -258,7 +258,7 @@ const Home = () => {
                   { title: '3rd Sem', path: '/3rdsem', emoji: '', delay: 0.1 },
                   { title: '4th Sem', path: '/4thsem', emoji: '', delay: 0.2 },
                   { title: 'Summer 2025', path: '/summer', emoji: '', delay: 0.3 },
-                  { title: 'Astami 2025', path: '/astami', emoji: '', delay: 0.4 },
+                  { title: 'Pujo 2025', path: '/astami', emoji: '', delay: 0.4 },
                   { title: '5th Sem', path: '/5thsem', emoji: '', delay: 0.5 },
                 ].map((item) => (
                   <motion.div
@@ -290,7 +290,7 @@ const Home = () => {
                 transition={{ delay: 0.8 }}
                 className="text-center text-pink-700 mt-8 sm:mt-12 font-cursive text-lg sm:text-xl md:text-2xl"
               >
-                Made with 💕 for the most special girl
+                Special gift for the prettiest girl 🙃
               </motion.p>
             </div>
           </motion.div>

@@ -105,7 +105,7 @@ const MemoryPage: React.FC<MemoryPageProps> = ({ sectionId, title, question, ima
                     type="text"
                     value={answer}
                     onChange={(e) => setAnswer(e.target.value)}
-                    placeholder="Your answer"
+                    placeholder="জানি তো ভুলে গেছিস 😭"
                     className={`w-full px-4 py-3 sm:py-4 rounded-xl outline-none border-2 transition-all duration-300 text-sm sm:text-base ${
                       wrong
                         ? 'border-red-400 bg-red-50 shake'
@@ -126,7 +126,7 @@ const MemoryPage: React.FC<MemoryPageProps> = ({ sectionId, title, question, ima
                     animate={{ opacity: 1 }}
                     className="text-red-500 text-center mt-3 text-sm sm:text-base"
                   >
-                    Oops! Wrong answer. Try again! 💭
+                    ঠিক করে ভাব🥱🥱
                   </motion.p>
                 )}
               </motion.div>

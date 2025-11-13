@@ -16,13 +16,13 @@
       "id": "4th",
       "title": "4th Semester",
       "question": {
-        "question": "আমার বন্ধুরা তোকে কী বলে ডাকে ?🫢",
-        "answers": ["Mili", "mili"]
+        "question": "Longest night out এ আমি কোন্ রঙের জামা পড়েছিলাম 🫠🫠?",
+        "answers": ["RED", "red", "Red"]
       }
     },
     {
       "id": "astami",
-      "title": "Astami 2025",
+      "title": "Pujo 2025",
       "question": {
         "question": "3rd Semএর শেষদিন Dreamlandএ আমরা কী খেয়েছিলাম বল তো?",
         "answers": ["Biryani","biryani","BIRYANI"]
@@ -32,8 +32,8 @@
       "id": "summer",
       "title": "Summer Memories 2025",
       "question": {
-        "question": "You missed me in Summer?",
-        "answers": ["Yes", "yes", "YES"]
+        "question": "কোন্ নদীর ধারে তোকে propose করব ভেবেছিলাম বল তো 🫣🫣?",
+        "answers": ["Kangsabati", "kangsabati", "KANGSABATI"]
       }
     },
     {
@@ -41,7 +41,7 @@
       "title": "5th Semester",
       "question": {
         "question": "একটাই তো সিনেমা একসাথে দেখেছি 😏বল দেখি first letter গুলো..😁?",
-        "answers": ["ZNMD","znmd"]
+        "answers": ["ZNMD","znmd","Znmd"]
       }
     }
   ]

@@ -10,7 +10,7 @@ const Navbar = () => {
     { name: '3rd Sem', path: '/3rdsem' },
     { name: '4th Sem', path: '/4thsem' },
     { name: 'Summer 2025', path: '/summer' },
-    { name: 'Astami', path: '/astami' },
+    { name: 'Pujo', path: '/astami' },
     { name: '5th Sem', path: '/5thsem' },
   ];
 
@@ -26,7 +26,7 @@ const Navbar = () => {
               className="h-12 w-12 rounded-full object-cover border-2 border-pink-300 group-hover:border-pink-400 transition-all duration-300 shadow-sm"
             />
             <span className="text-2xl font-cursive text-pink-800 font-semibold group-hover:text-pink-900 transition-colors duration-300">
-              Happy Birth Day
+              শুভ জন্মদিন
             </span>
           </Link>
 

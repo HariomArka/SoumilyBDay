@@ -3,7 +3,9 @@
     "/3rdSem/1.jpg",
     "/3rdSem/2.jpg",
     "/3rdSem/3.jpg",
-    "/3rdSem/4.jpg"
+    "/3rdSem/4.jpg",
+    "/3rdSem/5.jpg",
+    "/3rdSem/6.jpg"
   ],
   "4th": [
     "/4thSem/1.jpg",
@@ -28,7 +30,12 @@
     "/4thSem/20.jpg",
     "/4thSem/21.jpg",
     "/4thSem/22.jpg",
-    "/4thSem/23.jpg"
+    "/4thSem/23.jpg",
+    "/4thSem/24.jpg",
+    "/4thSem/25.jpg",
+    "/4thSem/26.jpg",
+    "/4thSem/27.jpg"
+
   ],
   "astami": [
     "/Astami/1.jpg",
@@ -44,7 +51,9 @@
     "/Astami/11.JPG",
     "/Astami/12.jpg",
     "/Astami/13.JPG",
-    "/Astami/14.JPG"
+    "/Astami/14.JPG",
+    "/Astami/15.jpg",
+    "/Astami/16.jpg"
   ],
   "summer": [
     "/summer/1.jpg",
@@ -55,7 +64,9 @@
     "/summer/6.jpg",
     "/summer/7.jpg",
     "/summer/8.jpg",
-    "/summer/9.jpg"
+    "/summer/9.jpg",
+    "/summer/10.jpg",
+    "/summer/11.jpg"
   ],
   "5th": [
     "/5thSem/1.jpg",
@@ -77,6 +88,10 @@
     "/5thSem/17.jpg",
     "/5thSem/18.jpg",
     "/5thSem/19.jpg",
-    "/5thSem/20.jpg"
+    "/5thSem/20.jpg",
+    "/5thSem/21.jpg",
+    "/5thSem/22.jpg",
+    "/5thSem/23.jpg",
+    "/5thSem/24.jpg"
   ]
 }
